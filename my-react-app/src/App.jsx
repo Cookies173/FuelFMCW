@@ -16,7 +16,7 @@ function App(){
 
   useEffect(()=>{
     const connectWallet = async()=>{
-      const contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+      const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
       const contractABI = abi.abi;
       try{
         const {ethereum} = window;
@@ -52,23 +52,9 @@ function App(){
   // console.log(contract);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-10 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">FMCW DApp</h1>
-
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-2xl mb-6">
-        <p className="text-gray-700 font-medium">
-          <span className="font-bold">Connected Account:</span> {account}
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <Buy state={state} />
-        </div>
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <Memos state={state} />
-        </div>
-      </div>
+    <div>
+      <Buy state={state} account={account} />
+      <Memos state={state} />
     </div>
   )
 };

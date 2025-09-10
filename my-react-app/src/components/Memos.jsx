@@ -9,46 +9,50 @@ function Memos({state}){
     useEffect(()=>{
         const memosMessage =async ()=>{
             const memos = await contract.getMemos();
-            console.log("Fetched memos:", memos)
+            // console.log("Fetched memos:", memos);
             setMemos(memos);
         }
         contract && memosMessage();
     }, [contract]);
 
-    return (<div className="p-6">
-      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
-        Messages
-      </h2>
-      <div className="overflow-x-auto shadow-md rounded-lg">
-        <table className="min-w-full text-sm text-left text-gray-700 border border-gray-200 rounded-lg">
-          <thead className="bg-gray-100 text-gray-900 uppercase text-xs font-semibold">
+    return (
+    <div className="w-full mx-auto my-10 p-5 rounded-xl bg-white/75 shadow-lg">
+
+      <h3 className="text-center mb-5 text-2xl font-bold text-[#066433]">
+        Support So Far 💚
+      </h3>
+
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse rounded-xl overflow-hidden font-sans">
+          <thead>
             <tr>
-              <th className="px-4 py-3 border-b">Name</th>
-              <th className="px-4 py-3 border-b">Message</th>
-              <th className="px-4 py-3 border-b">Timestamp</th>
-              <th className="px-4 py-3 border-b">From</th>
+              <th className="px-4 py-3 bg-[#066433] text-white border border-white">Name</th>
+              <th className="px-4 py-3 bg-[#066433] text-white border border-white">Team</th>
+              <th className="px-4 py-3 bg-[#066433] text-white border border-white">Time</th>
+              <th className="px-4 py-3 bg-[#066433] text-white border border-white">Message</th>
+              <th className="px-4 py-3 bg-[#066433] text-white border border-white">From</th>
             </tr>
           </thead>
           <tbody>
-            {memos.map((memo, index) => (
+            {memos.map((memo, idx) => (
               <tr
-                key={index}
-                className="odd:bg-white even:bg-gray-50 hover:bg-gray-100 transition"
+                key={idx}
+                className="hover:bg-[rgba(30,144,255,0.6)] transition-colors duration-300"
               >
-                <td className="px-4 py-3 border-b font-medium">{memo.name}</td>
-                <td className="px-4 py-3 border-b">{memo.message}</td>
-                <td className="px-4 py-3 border-b">
-                    {new Date(Number(memo.timestamp) * 1000).toLocaleString()}
+                <td className="px-4 py-3 border border-white">{memo.name}</td>
+                <td className="px-4 py-3 border border-white">{memo.teamname}</td>
+                <td className="px-4 py-3 border border-white">
+                  {new Date(Number(memo.timestamp) * 1000).toLocaleString()}
                 </td>
-                <td className="px-4 py-3 border-b text-gray-600 font-mono">
-                  {memo.from}
-                </td>
+                <td className="px-4 py-3 border border-white">{memo.message}</td>
+                <td className="px-4 py-3 border border-white font-mono">{memo.from}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </div>);
+    </div>
+    );
 };
 
 export default Memos;
